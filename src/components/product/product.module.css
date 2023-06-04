@@ -1,0 +1,38 @@
+.product {
+  background-color: var(--light-gray);
+  padding: 20px;
+  text-align: center;
+  position: relative;
+}
+
+.product a {
+  color: var(--main-color);
+}
+
+.product_image {
+  width: 150px;
+  margin-bottom: 20px;
+}
+
+.product p {
+  margin: 20px 0;
+}
+
+.heart_icon {
+  position: absolute;
+  right: 30px;
+  top: 30px;
+  cursor: pointer;
+  font-size: 20px;
+  padding: 5px;
+}
+
+.wishlisted {
+  background-color: var(--secondary-color);
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+  color: #fff;
+}

@@ -1,0 +1,131 @@
+header {
+  box-shadow: 1px 1px 20px rgba(0, 0, 0, 0.2);
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 999;
+  background-color: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: 60px;
+}
+
+header i {
+  font-size: 20px;
+  cursor: pointer;
+}
+
+.logo_holder {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.logo_image {
+  width: 60px;
+  object-fit: contain;
+}
+
+.nav_icons {
+  display: flex;
+  align-items: center;
+}
+
+.nav_icons a div {
+  margin-left: 30px;
+  position: relative;
+}
+
+.cart_number,
+.wish_list {
+  position: absolute;
+  top: -8px;
+  right: -13px;
+  background-color: var(--secondary-color);
+  color: var(--white);
+  width: 22px;
+  height: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -moz-border-radius: 50%;
+  -ms-border-radius: 50%;
+  -o-border-radius: 50%;
+}
+
+.side_bar {
+  position: absolute;
+  padding: 20px;
+  z-index: 1;
+  left: -310px;
+  top: 100%;
+  background-color: var(--white);
+  width: 300px;
+  height: calc(100vh - 80px);
+  text-align: center;
+  box-shadow: 1px 12px 20px rgba(0, 0, 0, 0.2);
+  border-top: 1px solid var(--light-gray);
+  transition: 0.3s;
+  -webkit-transition: 0.3s;
+  -moz-transition: 0.3s;
+  -ms-transition: 0.3s;
+  -o-transition: 0.3s;
+}
+
+.show_side_bar {
+  left: 0;
+}
+
+.side_bar ul li {
+  padding: 30px 0;
+}
+
+.side_bar ul li:hover {
+  border-bottom: 1px solid var(--main-color);
+}
+
+.side_bar ul li a {
+  color: var(--main-color);
+  font-weight: bold;
+}
+
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 100%;
+  background-color: #00000082;
+  width: 0;
+  height: calc(100vh - 80px);
+  z-index: -1;
+}
+
+.active_overlay {
+  width: 100%;
+}
+
+@media (max-width: 700px) {
+  .logo_image {
+    width: 40px;
+  }
+  .nav_icons i {
+    font-size: 15px;
+    width: fit-content;
+  }
+
+  .nav_icons a div {
+    margin-left: 15px;
+  }
+
+  .cart_number,
+  .wish_list {
+    width: 18px;
+    height: 18px;
+  }
+}

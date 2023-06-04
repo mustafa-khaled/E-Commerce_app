@@ -1,0 +1,22 @@
+.not_found_page {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  min-height: calc(100vh - 90px);
+}
+
+.not_found_page div {
+  text-align: center;
+}
+
+.not_found_page div i {
+  font-size: 70px;
+  color: #ccc;
+}
+
+.not_found_page div p {
+  margin: 30px auto;
+  font-size: 30px;
+  color: #ccc;
+}

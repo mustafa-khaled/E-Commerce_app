@@ -1,0 +1,122 @@
+.container_styles {
+  width: 100%;
+  height: calc(80vh - 60px);
+  margin-top: 60px;
+}
+
+.slider_style {
+  height: 100%;
+  position: relative;
+}
+
+.slide_styles {
+  width: 100%;
+  height: 100%;
+  background-position: center;
+  background-size: cover;
+}
+
+.left_arrow,
+.right_arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  -webkit-transform: translateY(-50%);
+  -moz-transform: translateY(-50%);
+  -ms-transform: translateY(-50%);
+  -o-transform: translateY(-50%);
+  z-index: 1;
+  cursor: pointer;
+}
+
+.left_arrow {
+  left: 32px;
+}
+
+.right_arrow {
+  right: 32px;
+}
+
+.left_arrow i,
+.right_arrow i {
+  font-size: 45px;
+  color: var(--light-gray);
+}
+
+.cta_btn {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  -webkit-transform: translateX(-50%);
+  -moz-transform: translateX(-50%);
+  -ms-transform: translateX(-50%);
+  -o-transform: translateX(-50%);
+  bottom: 10vh;
+  z-index: 5;
+}
+
+.boxes {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+  gap: 30px;
+  margin: 30px 0;
+}
+
+.boxes div {
+  height: 300px;
+  background-size: cover;
+  position: relative;
+}
+
+.boxes div::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #00000094;
+}
+
+.boxes div:first-of-type {
+  background-image: url(../../assets/home1.jpg);
+}
+
+.boxes div:nth-child(2) {
+  background-image: url(../../assets/home2.jpg);
+}
+
+.boxes div:last-of-type {
+  background-image: url(../../assets/home3.jpg);
+}
+
+.features_div {
+  padding: 10px;
+  margin: 60px auto 30px;
+  height: 250px;
+  background-image: url(../../assets/Features.png);
+  background-size: cover;
+  background-position: 50%;
+  background-repeat: no-repeat;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.features_div h2 {
+  margin-bottom: 20px;
+  color: var(--main-color);
+}
+
+@media (max-width: 450px) {
+  .boxes {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  }
+}
+
+@media (max-width: 300px) {
+  .boxes {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
