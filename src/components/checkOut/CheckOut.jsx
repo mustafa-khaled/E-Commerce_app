@@ -1,22 +1,37 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../cart/cart.module.css";
-import { removeFromCart } from "../../redux/slices/cart-slice";
+import { removeAll, removeFromCart } from "../../redux/slices/cart-slice";
 import { CardElement } from "@stripe/react-stripe-js";
+import checkOutStyles from "./checkOut.module.css";
+import { useState } from "react";
+
+import { useNavigate } from "react-router-dom";
 
 const CheckOut = () => {
+  const { user } = useSelector((state) => state.auth);
   const cart = useSelector((state) => state.cart);
+
+  const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const [error, setError] = useState(null);
+
+  //  Get Total Price
   const hasItems = cart.length > 0;
   const totalPrice = cart.reduce((acc, product) => {
     acc += product.price * product.quantity;
     return acc;
   }, 0);
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
+    navigate("/orders");
+    dispatch(removeAll());
   };
-  const handleChange = () => {};
+
+  const handleChange = (e) => {
+    setError(error ? error.message : "");
+  };
 
   return (
     <>
@@ -50,14 +65,21 @@ const CheckOut = () => {
               </div>
             </div>
           ))}
-          <div className={styles.total}>
+          <div className={`${styles.total} ${checkOutStyles.total}`}>
             <h3>Personal Info: Mustafa</h3>
             <h3>Total Price: ${totalPrice.toFixed(2)}</h3>
             {/* Stripe Card */}
-            <form onSubmit={handleSubmit}>
-              <CardElement onChange={handleChange} />
-              <button className="btn">Order Now</button>
-            </form>
+            <div className={checkOutStyles.check_out_form}>
+              <form onSubmit={handleSubmit}>
+                <CardElement onChange={handleChange} />
+                <button
+                  className={`btn ${checkOutStyles.form_btn}`}
+                  type="submit">
+                  Order Now
+                </button>
+              </form>
+            </div>
+            {error && <div>{error}</div>}
           </div>
         </div>
       ) : (

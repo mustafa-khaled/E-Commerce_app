@@ -13,3 +13,4 @@ export { default as Electronics } from "./electronics/Electronics";
 export { default as About } from "./about/About";
 export { default as Footer } from "./footer/Footer";
 export { default as CheckOut } from "./checkOut/CheckOut.jsx";
+export { default as Orders } from "./orders/Orders.jsx";

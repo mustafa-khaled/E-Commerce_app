@@ -12,11 +12,11 @@
 
 .not_found_page div i {
   font-size: 70px;
-  color: #ccc;
+  color: var(--dark-gray);
 }
 
 .not_found_page div p {
   margin: 30px auto;
   font-size: 30px;
-  color: #ccc;
+  color: var(--dark-gray);
 }

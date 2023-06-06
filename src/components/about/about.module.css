@@ -42,7 +42,7 @@
 }
 
 .about_slider {
-  background-color: #eee;
+  background-color: var(--light-gray);
   position: relative;
   padding: 30px !important;
 }
