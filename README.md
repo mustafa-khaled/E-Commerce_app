@@ -36,9 +36,6 @@ To get started with the app, follow these steps:
 4. Start the development server: `npm start`
 5. Open the app in your browser: Visit `http://localhost:3000` to view the app.
 
-## Contributing
-
-Contributions to the project are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request. Be sure to follow the project's code of conduct.
 
 
 
