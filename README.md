@@ -40,11 +40,7 @@ To get started with the app, follow these steps:
 
 Contributions to the project are welcome! If you find any bugs or have suggestions for improvements, please open an issue or submit a pull request. Be sure to follow the project's code of conduct.
 
-## License
 
-This project is licensed under the [MIT License](https://opensource.org/licenses/MIT). You are free to use, modify, and distribute the code for personal or commercial purposes. See the `LICENSE` file for more details.
-
-## Acknowledgements
 
 - [React](https://reactjs.org/)
 - [Firebase](https://firebase.google.com/)
