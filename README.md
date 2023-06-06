@@ -44,7 +44,5 @@ To get started with the app, follow these steps:
 - [Stripe](https://stripe.com/)
 - [Create React App](https://create-react-app.dev/)
 
-## Contact
 
-If you have any questions or need further assistance, feel free to contact the project maintainer at [email@example.com].
 
