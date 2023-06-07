@@ -14,3 +14,5 @@ export { default as About } from "./about/About";
 export { default as Footer } from "./footer/Footer";
 export { default as CheckOut } from "./checkOut/CheckOut.jsx";
 export { default as Orders } from "./orders/Orders.jsx";
+export { default as Popup } from "./popup/Popup.jsx";
+export { default as ScrollToTop } from "./scrollToTop/ScrollToTop.jsx";

@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import styles from "../cart/cart.module.css";
 import { removeAll, removeFromCart } from "../../redux/slices/cart-slice";
-import { CardElement } from "@stripe/react-stripe-js";
+import { CardElement, useElements } from "@stripe/react-stripe-js";
 import checkOutStyles from "./checkOut.module.css";
 import { useState } from "react";
 
@@ -14,23 +14,61 @@ const CheckOut = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
+  const elements = useElements();
   const [error, setError] = useState(null);
+
+  // State to manage the quantity of each product
+  const [productQuantities, setProductQuantities] = useState(
+    cart.reduce((quantities, product) => {
+      quantities[product.id] = product.quantity;
+      return quantities;
+    }, {})
+  );
+
+  // Function to handle changes in the product quantity
+  const handleQuantityChange = (productId, quantity) => {
+    if (Number.isNaN(quantity) || quantity < 1) {
+      setProductQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [productId]: 1,
+      }));
+    } else {
+      setProductQuantities((prevQuantities) => ({
+        ...prevQuantities,
+        [productId]: quantity,
+      }));
+    }
+  };
 
   //  Get Total Price
   const hasItems = cart.length > 0;
   const totalPrice = cart.reduce((acc, product) => {
-    acc += product.price * product.quantity;
+    acc += product.price * productQuantities[product.id];
     return acc;
   }, 0);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Check if user is logged in
+    if (!user) {
+      setError("Please login to submit your order.");
+      return;
+    }
+
+    // Check if card field is empty
+    const cardElement = elements.getElement("cardNumber");
+    if (!cardElement || cardElement.isEmpty) {
+      setError("Please enter your card number.");
+      return;
+    }
+
     navigate("/orders");
     dispatch(removeAll());
   };
 
-  const handleChange = (e) => {
-    setError(error ? error.message : "");
+  const handleChange = () => {
+    setError(null);
   };
 
   return (
@@ -52,8 +90,20 @@ const CheckOut = () => {
               </div>
 
               <div>
-                <h4 className={styles.quantity}> {product.quantity} : Items</h4>
-                <h4>Price: ${product.price * product.quantity}</h4>
+                <input
+                  type="number"
+                  min="1"
+                  value={productQuantities[product.id]}
+                  onChange={(e) =>
+                    handleQuantityChange(
+                      product.id,
+                      parseInt(e.target.value, 10)
+                    )
+                  }
+                  className={checkOutStyles.quantity_input}
+                />
+
+                <h4>Price: ${product.price * productQuantities[product.id]}</h4>
               </div>
 
               <div>
@@ -79,7 +129,7 @@ const CheckOut = () => {
                 </button>
               </form>
             </div>
-            {error && <div>{error}</div>}
+            {error && <div className={checkOutStyles.error}>{error}</div>}
           </div>
         </div>
       ) : (

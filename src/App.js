@@ -15,6 +15,8 @@ import {
   Footer,
   CheckOut,
   Orders,
+  ScrollToTop,
+  Popup,
 } from "./components";
 import { useEffect } from "react";
 import { auth } from "./firebase";
@@ -70,6 +72,7 @@ const App = () => {
         <Route path="orders" element={<Orders />} />
         <Route path="*" element={<NotFoundPage />} />
       </Routes>
+      <ScrollToTop />
       <Footer />
     </div>
   );

@@ -1,5 +1,5 @@
 .product_details {
-  margin-top: 90px;
+  margin: 90px auto 50px;
   display: flex;
   align-items: center;
   justify-content: space-between;

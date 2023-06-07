@@ -5,6 +5,7 @@ import { addToCart } from "../../redux/slices/cart-slice";
 import { fetchProductDetails } from "../../redux/slices/details-slice";
 import Loading from "../loading/Loading";
 import styles from "./productDetails.module.css";
+import Popup from "../popup/Popup";
 
 const ProductDetails = () => {
   const dispatch = useDispatch();
@@ -14,6 +15,7 @@ const ProductDetails = () => {
   const error = useSelector((state) => state.productDetails.error);
 
   const [selectedImage, setSelectedImage] = useState(null);
+  const [showPopup, setShowPopup] = useState(false);
 
   useEffect(() => {
     dispatch(fetchProductDetails(param.id));
@@ -21,6 +23,14 @@ const ProductDetails = () => {
 
   const handleImageClick = (image) => {
     setSelectedImage(image);
+  };
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    setShowPopup(true);
+    setTimeout(() => {
+      setShowPopup(false);
+    }, 1000);
   };
 
   if (loading) {
@@ -33,6 +43,7 @@ const ProductDetails = () => {
 
   return (
     <div className={`${styles.product_details} container`}>
+      {showPopup && <Popup content="Added successfully!" />}
       {products && (
         <div className={styles.images_container}>
           <img
@@ -60,7 +71,7 @@ const ProductDetails = () => {
           <h2>{products.title}</h2>
           <p>{products.description}</p>
           <h3>{products.price} $</h3>
-          <button className="btn" onClick={() => dispatch(addToCart(products))}>
+          <button className="btn" onClick={() => handleAddToCart(products)}>
             Add To Cart
           </button>
         </div>

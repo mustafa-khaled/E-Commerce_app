@@ -3,12 +3,23 @@ import styles from "./wishList.module.css";
 import { addToCart } from "../../redux/slices/cart-slice";
 import { removeFromWishList } from "../../redux/slices/wishList-slice";
 import { Link } from "react-router-dom";
+import { useState } from "react";
+import Popup from "../popup/Popup";
 
 const WishList = () => {
   const dispatch = useDispatch();
   const wishList = useSelector((state) => state.wishList);
+  const [showCartPopup, setShowCartPopup] = useState(false);
 
   const hasItems = wishList.length > 0;
+
+  const handleAddToCart = (product) => {
+    dispatch(addToCart(product));
+    setShowCartPopup(true);
+    setTimeout(() => {
+      setShowCartPopup(false);
+    }, 1000);
+  };
 
   return (
     <>
@@ -25,9 +36,7 @@ const WishList = () => {
                 <h1>{product.title}</h1>
               </Link>
 
-              <button
-                className="btn"
-                onClick={() => dispatch(addToCart(product))}>
+              <button className="btn" onClick={() => handleAddToCart(product)}>
                 Add To Cart
               </button>
               <button
@@ -44,6 +53,7 @@ const WishList = () => {
           <h2>Your Wish List is empty</h2>
         </div>
       )}
+      {showCartPopup && <Popup content="Added successfully" />}
     </>
   );
 };
